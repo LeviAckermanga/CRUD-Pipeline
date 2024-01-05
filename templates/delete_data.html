@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Eliminar Datos</title>
+</head>
+<body>
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Eliminar Datos</h2>
+
+    <form method="post" action="{{ url_for('delete_data', table=table) }}">
+        <div class="form-group">
+            <label for="condition_value">Valor de la condición:</label>
+            <input type="text" class="form-control" id="condition_value" name="condition_value" required>
+        </div>
+
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
+</div>
+{% endblock %}
+
+</body>
+</html>

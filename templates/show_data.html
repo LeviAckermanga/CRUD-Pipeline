@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Operaciones CRUD</title>
+</head>
+<body>
+
+    {% block content %}
+    <div class="container mt-4">
+        <h2>{{ table }}</h2>
+        <!-- Mostrar datos de la tabla -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <!-- Encabezados de columnas -->
+                    {% for column in columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        <!-- Datos de la fila -->
+                        {% for column in columns %}
+                        <td>{{ row[column] }}</td>
+                        {% endfor %}
+                        <!-- Botones de acciones -->
+                        <td>
+                            <a href="{{ url_for('insert_data', table=table) }}" class="btn btn-success">Insertar</a>
+                            <a href="{{ url_for('update_data', table=table, condition_column=columns[0], condition_value=row[columns[0]]) }}" class="btn btn-warning">Actualizar</a>
+                            <a href="{{ url_for('delete_data', table=table, condition_column=columns[0], condition_value=row[columns[0]]) }}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
+    
+    </body>
+    </html>

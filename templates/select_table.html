@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Seleccionar Tabla</title>
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Seleccionar Tabla</h2>
+    <form method="post" action="{{ url_for('select_table') }}">
+        <div class="form-group">
+            <label for="table_name">Tabla:</label>
+            <select class="form-control" id="table_name" name="table_name" required>
+                {% for table in tables %}
+                    <option value="{{ table[0] }}">{{ table[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Seleccionar</button>
+    </form>
+</div>
+
+</body>
+</html>

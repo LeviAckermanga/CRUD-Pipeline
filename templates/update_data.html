@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Actualizar Datos</title>
+</head>
+<body>
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Actualizar Datos en {{ table }}</h2>
+
+    <!-- Formulario para realizar actualización -->
+    <form method="post" action="{{ url_for('update_data', table=table) }}">
+        <div class="form-group">
+            <label for="condition_column">Columna de condición:</label>
+            <select class="form-control" id="condition_column" name="condition_column">
+                {% for column in columns %}
+                    <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="condition_value">Valor de condición (ID):</label>
+            <input type="text" class="form-control" id="condition_value" name="condition_value" required>
+        </div>
+
+        <div class="form-group">
+            <label for="column_to_update">Columna a actualizar:</label>
+            <select class="form-control" id="column_to_update" name="column_to_update">
+                {% for column in columns %}
+                    <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="new_value">Nuevo valor:</label>
+            <input type="text" class="form-control" id="new_value" name="new_value" required>
+        </div>
+
+        <button type="submit" class="btn btn-warning">Actualizar</button>
+    </form>
+</div>
+{% endblock %}
+
+</body>
+</html>
